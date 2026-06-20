@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>问鼎H5 · 轻量导航</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f9fafb;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+      color: #1e293b;
+      line-height: 1.65;
+      padding: 0 1.5rem;
+    }
+
+    .page {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2.5rem 0 4rem 0;
+    }
+
+    /* ------ 顶部导航 ------ */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0 1.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 3rem;
+    }
+
+    .site-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: #0f172a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #475569;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* ------ hero ------ */
+    .hero {
+      margin-bottom: 3.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      color: #0f172a;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #475569;
+      max-width: 560px;
+    }
+
+    .hero .bookmark-hint {
+      display: inline-block;
+      background: #f1f5f9;
+      border-radius: 40px;
+      padding: 0.35rem 1rem;
+      font-size: 0.85rem;
+      color: #334155;
+      margin-top: 1.2rem;
+    }
+
+    .hero .bookmark-hint span {
+      background: #e2e8f0;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      font-weight: 500;
+      margin: 0 0.25rem;
+    }
+
+    /* ------ 核心介绍（从再次访问与收藏切入） ------ */
+    .core {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 2rem 2rem 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.04);
+      margin-bottom: 3rem;
+    }
+
+    .core h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+
+    .core .sub {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 1.2rem;
+    }
+
+    .core .desc {
+      font-size: 0.98rem;
+      color: #334155;
+    }
+
+    .core .desc a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #94a3b8;
+    }
+
+    .core .desc a:hover {
+      border-bottom: 1px solid #2563eb;
+    }
+
+    .core .fav-tip {
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #eef2f6;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .fav-tip .badge {
+      background: #f1f5f9;
+      border-radius: 30px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.8rem;
+      color: #1e293b;
+      white-space: nowrap;
+    }
+
+    /* ------ 三个场景模块 ------ */
+    .scenes {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .scene-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.75rem 1.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      border: 1px solid #f1f5f9;
+      transition: box-shadow 0.2s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 6px 16px rgba(0,0,0,0.03);
+    }
+
+    .scene-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+
+    .scene-card p {
+      font-size: 0.92rem;
+      color: #475569;
+      margin-bottom: 0.5rem;
+    }
+
+    .scene-card .scene-note {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      border-left: 3px solid #e2e8f0;
+      padding-left: 0.75rem;
+      margin-top: 0.6rem;
+    }
+
+    /* ------ 常见说明 (FAQ 摘要) ------ */
+    .faq-summary {
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-summary h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: #0f172a;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-item .q {
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+    }
+
+    .faq-item .q::before {
+      content: "▸";
+      color: #94a3b8;
+      margin-right: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .faq-item .a {
+      font-size: 0.9rem;
+      color: #64748b;
+      padding-left: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .faq-item .a a {
+      color: #2563eb;
+      text-decoration: none;
+      border-bottom: 1px dotted #cbd5e1;
+    }
+
+    .faq-item .a a:hover {
+      border-bottom: 1px solid #2563eb;
+    }
+
+    /* ------ 底部 ------ */
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      padding-top: 2.5rem;
+      border-top: 1px solid #eef2f6;
+      letter-spacing: 0.03em;
+    }
+
+    /* ------ 响应式 ------ */
+    @media (max-width: 580px) {
+      .page {
+        padding: 1.5rem 0 3rem 0;
+      }
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+        margin-bottom: 2rem;
+      }
+      .nav-links {
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .core {
+        padding: 1.5rem 1.2rem;
+      }
+      .scene-card {
+        padding: 1.3rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero .bookmark-hint {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.7rem;
+      }
+      .fav-tip {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+      <span class="site-title">问鼎H5</span>
+      <div class="nav-links">
+        <a href="#">再次访问</a>
+        <a href="#">收藏</a>
+        <a href="#">场景</a>
+      </div>
+    </nav>
+
+    <!-- hero 区域 -->
+    <div class="hero">
+      <h1>再次回来，<br>轻量 H5 导航</h1>
+      <p>一个专注 H5 内容展示的站点。不需要反复搜索，<br>收藏一次，每次打开都在手边。</p>
+      <div class="bookmark-hint">
+        ⭐ 已收藏 · <span>问鼎H5</span> · 持续关注
+      </div>
+    </div>
+
+    <!-- 核心介绍：再次访问与收藏角度 -->
+    <div class="core">
+      <h2>从收藏起步，常回来看看</h2>
+      <div class="sub">不依赖复杂的入口，只需一个书签</div>
+      <div class="desc">
+        <p>很多朋友觉得好用的 H5 页面隔段时间就找不到了。其实只需要把 <a href="https://wap-wending.com">问鼎H5</a> 加入浏览器收藏夹，或者保留在聊天置顶——下次点开，还是那个熟悉的界面。我们一直在这里，没有花哨的跳转，一个地址就够了。</p>
+      </div>
+      <div class="fav-tip">
+        <span class="badge">📌 添加到主屏幕（iOS / Android）</span>
+        <span class="badge">🔖 浏览器收藏</span>
+        <span class="badge">🔄 定期回来看看</span>
+      </div>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes">
+      <div class="scene-card">
+        <h3>📱 日常浏览 · 随手打开</h3>
+        <p>上下班路上、午休间隙，想看看有什么新内容，不用下载额外应用。浏览器打开 <strong>问鼎H5</strong> 就行，页面轻快，加载不拖沓。</p>
+        <div class="scene-note">适合碎片时间 · 不占内存</div>
+      </div>
+      <div class="scene-card">
+        <h3>💼 工作参考 · 快速查阅</h3>
+        <p>需要某个 H5 案例或者功能模块时，直接访问站点，不用翻聊天记录。收藏一次，每次都能按需引用，比存截图更可靠。</p>
+        <div class="scene-note">稳定地址 · 随时可查</div>
+      </div>
+      <div class="scene-card">
+        <h3>🔄 回访与发现 · 持续关注</h3>
+        <p>隔一段时间回来，站点内容会有更新，但结构保持简洁，不至于迷路。把 <a href="https://wap-wending.com">问鼎H5</a> 放进常读列表，就像一份 H5 小刊物。</p>
+        <div class="scene-note">不需要每次重新搜索</div>
+      </div>
+    </div>
+
+    <!-- 常见说明（FAQ 摘要） -->
+    <div class="faq-summary">
+      <h2>常见说明</h2>
+      <div class="faq-item">
+        <div class="q">如何快速再次访问？</div>
+        <div class="a">添加书签，或者在浏览器地址栏输入 <strong>wap-wending.com</strong>。我们建议直接收藏 <a href="https://wap-wending.com">问鼎H5</a> 到主屏幕。</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">收藏后还会变地址吗？</div>
+        <div class="a">目前没有迁移计划，长期使用同一个域名。如有变动会在站点内说明，不必担心失联。</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">适合用手机打开吗？</div>
+        <div class="a">正是为移动端浏览优化，窄屏适配良好。同样适合平板和电脑。</div>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+      问鼎H5 · 轻量导航 · 值得收藏的一个站点
+    </div>
+  </div>
+</body>
+</html>
